@@ -1,0 +1,9 @@
+{
+    "git.ignoreLimitWarning": true,
+    "cSpell.ignoreWords": [
+        "afhmk",
+        "qj",
+        "wp"
+    ],
+    "files.autoSave": "onFocusChange"
+}
