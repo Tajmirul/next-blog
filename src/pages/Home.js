@@ -15,7 +15,6 @@ import { BiWorld } from 'react-icons/bi';
 class Home extends Component {
     render() {
         const { blogs, recentBlogs, popularBlogs, topics } = this.context;
-        document.title = 'Tajmirul Blog'
 
         return (
             <>
@@ -52,7 +51,7 @@ class Home extends Component {
                                         {recentBlogs.map(blog => <SidebarBlogs key={blog.id} blog={blog} />)}
                                     </SidebarItem>
 
-                                    <SidebarItem title='Recent Blogs'>
+                                    <SidebarItem title='Popular Blogs'>
                                         {popularBlogs.map(blog => <SidebarBlogs key={blog.id} blog={blog} />)}
                                     </SidebarItem>
                                 </div>

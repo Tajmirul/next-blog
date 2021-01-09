@@ -51,7 +51,7 @@ class SingleBlog extends Component {
                         <Row className='blog-contents'>
                             <Col xs={12}>
                                 <div className='mb-4'>
-                                    <h2 className='heading-primary'>{title}</h2>
+                                    <h1 className='heading-primary text-off-white'>{title}</h1>
                                     <h4 className='heading-tertiary text-off-white'>{writer} &nbsp;-&nbsp; {publishDate}</h4>
                                 </div>
                             </Col>

@@ -3,6 +3,8 @@ import { Col, Row } from 'reactstrap'
 import { FaRegUser, FaRegCalendarAlt } from 'react-icons/fa';
 import marked from 'marked';
 import { Link } from 'react-router-dom';
+import Image from './Image';
+import Preloader from '../images/iconComponents/Preloader';
 
 
 const Blog = ({ blog }) => {
@@ -22,7 +24,9 @@ const Blog = ({ blog }) => {
             <Row>
                 <Col md={4}>
                     <Link to={`/blogs/${slug}`} className='h-100'>
-                        <img src={heroImage} alt={title} className='w-100 h-100' style={{ objectFit: 'cover' }} />
+                        <Image src={heroImage} alt={title} className='w-100 h-100' style={{ objectFit: 'cover' }} >
+                            <Preloader />
+                        </Image>
                     </Link>
                 </Col>
                 <Col md={8} className='d-flex align-items-center'>

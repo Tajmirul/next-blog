@@ -4,6 +4,7 @@
     --off-white: #f2f2f2;
     --gray: #e2e2e2;
     --theme: #cf000f;
+    --placeholder-color: #c5c5c5;
 
     --theme-value: 207, 0, 15;
     --off-white-vale: 242, 242, 242;
@@ -96,7 +97,9 @@
     border-radius: 1rem;
     overflow: hidden;
 }
-/* .topic img {} */
+.topic img {
+    background-color: var(--placeholder-color);
+}
 .topic .topic-name {
     position: absolute;
     bottom: 0;
