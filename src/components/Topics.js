@@ -6,17 +6,18 @@ import Slider from 'react-slick';
 
 export const Topics = ({ topics }) => {
 
-    // xs={6} sm={3} md={4}
     const settings = {
         autoplay: true,
         arrows: false,
         infinite: true,
-        speed: 4000,
-        autoplaySpeed: 4000,
+        speed: 3000,
+        autoplaySpeed: 3000,
         slidesToShow: 5,
         slidesToScroll: 1,
         pauseOnHover: true,
         pauseOnFocus: true,
+        waitForAnimate: false,
+        cssEase: 'linear',
         responsive: [
             {
                 breakpoint: 578,

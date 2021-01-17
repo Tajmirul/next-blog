@@ -22,10 +22,11 @@ class BlogProvider extends Component {
         topics: [],
         contacts: [],
         socialContacts: [],
+        error: null,
+        errors: [],
         searchTerm: '',
         searching: false,
         loading: true,
-        error: null,
     };
 
     componentDidMount() {
