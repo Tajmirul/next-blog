@@ -6,7 +6,7 @@ const Topic = ({ topic: { name, image } }) => {
     return (
         <Col className='mb-5'>
             <Link to={`/topics/${name}`}>
-                <div className='topic'>
+                <div className='topic' style={{backgroundColor: 'var(--placeholder-color)'}} >
                     <img src={image} alt={name} />
                     <div className='topic-name'>
                         <h4>{name}</h4>

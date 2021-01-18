@@ -25,6 +25,7 @@ class ContactForm extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
+        
         const url = `https://jsonplaceholder.typicode.com/users`;
         this.setState({
             status: null,

@@ -9,7 +9,7 @@ const PopularBlog = ({ blog }) => {
     return (
         <Col className='slider-item'>
             <div className='popular-blog'>
-                <img src={heroImage} alt={title} />
+                <img src={heroImage} alt={title} style={{backgroundColor: 'var(--placeholder-color)'}} />
                 <div className='blog-content'>
                     <Link to={`/blogs/${slug}`}><h4 className='heading-tertiary' >{title}</h4></Link>
                     <p className='fz-small'>
