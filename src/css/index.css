@@ -24,8 +24,25 @@
     box-shadow: var(--shadow);
 }
 
-.navbar .logo-area {
+.navbar .logo-area img {
     max-width: 12rem;
+}
+.navbar .logo-area .hamburger {
+    font-size: 2.4rem;
+    float: right;
+    border: none;
+    background-color: var(--white);
+    border-radius: 50%;
+    width: 3.6rem;
+    height: 3.6rem;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar .logo-area .hamburger:hover {
+    filter: contrast(73%);
 }
 
 .navbar .desktop-nav ul {
@@ -48,12 +65,34 @@
     color: var(--theme);
 }
 
-/* hero */
-/* .default-hero {} */
+.navbar .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    max-width: 300px;
+    background-color: var(--white);
+    padding-top: 5rem;
+    z-index: 4;
+    overflow: hidden;
+    transition: .3s;
+}
+.navbar .mobile-nav.active {
+    width: 100%;
+}
+/* .navbar .mobile-nav ul {}
+.navbar .mobile-nav ul li {} */
+.navbar .mobile-nav ul li a {
+    padding: .5rem 2rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--dark);
+}
 
-/* .slider-hero {
-    ;
-} */
+.navbar .mobile-nav ul li a:hover {
+    color: var(--theme)
+}
 
 .banner-slider {
     height: 55rem;
