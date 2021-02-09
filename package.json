@@ -27,7 +27,7 @@
         "build": "CI= react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "gitUpdate": "git add . && git commit -m \"Updated\" && git push "
+        "gitUpdate": "git add . && git commit -m \"Updated\" && git push"
     },
     "eslintConfig": {
         "extends": [
