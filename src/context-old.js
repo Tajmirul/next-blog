@@ -8,57 +8,42 @@ import food from './images/topics/food.jpg';
 import hills from './images/topics/hills.jpg';
 import life from './images/topics/life.jpg';
 import { BiWindowOpen } from 'react-icons/bi';
-import axios from 'axios';
 
 
 const BlogContext = React.createContext();
 
 class BlogProvider extends Component {
+
     state = {
         blogs: [],
         recentBlogs: [],
         popularBlogs: [],
         searchedBlogs: [],
-        users: [],
         topics: [],
-        categories: [],
         contacts: [],
         socialContacts: [],
-        errors: [],
-        singleBlog: {},
         error: null,
+        errors: [],
         searchTerm: '',
         searching: false,
         loading: true,
     };
 
     componentDidMount() {
-        this.getUsers();
-        this.getCategories();
-        this.getBlogs();
-    }
-
-    getBlogs = () => {
-        axios.get('https://lifeexpart.site/api/newspaper-v1/posts/')
+        client.getEntries({ 'content_type': 'blogPost' })
             .then(response => {
-                this.setState({ blogs: this.filterData(response.data) });
+                this.setState({ blogs: this.filterData(response.items) });
                 this.recentBlogs();
                 this.popularBlogs();
+                this.topics();
+                this.getContacts();
+
+                this.setState({ loading: false })
             })
             .catch(error => {
                 this.setState({ error: error });
+                this.setState({ loading: false })
             })
-            .finally(() => {
-                this.setState({ loading: false });
-            })
-    }
-
-    getUsers = () => {
-        axios.get('https://lifeexpart.site/api/newspaper-v1/users/')
-            .then(res => {
-                this.setState({ 'users': res.data });
-            })
-            .catch(console.error)
     }
 
     getSearch = (e) => {
@@ -79,23 +64,13 @@ class BlogProvider extends Component {
 
     filterData = (blogs) => {
         let tempBlog = blogs.map(blog => {
-            const heroImage = 'http://lifeexpart.site/' + blog.image;
-            const author = this.state.users.find(user => user.id === blog.user_id);
-            const publishDate = blog.created_at.match(/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/);
-            const category = this.state.categories.find(category => category.id === blog.category_id);
-            return { ...blog, author, category, publishDate, heroImage };
+            const id = blog.sys.id;
+            const heroImage = blog.fields.heroImage.fields.file.url;
+            const body = marked(blog.fields.body);
+            const publishDate = blog.fields.publishDate.match(/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/);
+            return { ...blog.fields, body, publishDate, id, heroImage }
         });
         return tempBlog;
-    };
-
-    getCategories = () => {
-        axios.get('https://lifeexpart.site/api/newspaper-v1/categories/')
-            .then(res => {
-                this.setState({ 'categories': res.data.data })
-            })
-            .catch(console.error)
-
-        // console.log(this.state.tags)
     }
 
     getContacts = () => {
@@ -156,10 +131,8 @@ class BlogProvider extends Component {
     }
 
     popularBlogs = () => {
-        const popularBlogs = this.state.blogs.filter(blog => {
-            return blog.click
-        });
-        this.setState({ popularBlogs: popularBlogs, });
+        const popularBlogs = this.state.blogs.filter(blog => blog.popular)
+        this.setState({ popularBlogs: popularBlogs, })
     }
 
     topics = () => {
@@ -209,6 +182,11 @@ class BlogProvider extends Component {
         this.setState({
             searchTerm: term.toLowerCase().trim(),
         })
+    }
+
+    getSingleBlog = (slug) => {
+        const blog = this.state.blogs.find(blog => blog.slug === slug);
+        return blog;
     }
 
     render() {
